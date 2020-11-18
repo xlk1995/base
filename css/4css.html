@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>盒模型</title>
+  <style>
+    .login {
+      background: orangered;
+      box-sizing: border-box;
+      text-align: center;
+      width: 100px;
+      padding: 10px 0;
+      color: #fff;
+      margin: 0 auto;
+      border-radius: 5px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .login:hover {
+      box-shadow: 1px 1px 10px gray;
+    }
+  </style>
+</head>
+<body>
+  <p>一个div包括content padding border margin 四个部分</p>
+  <p>margin: 10px auto; 可以使div居中，如果想要文字上下居中可以使用 padding: 10px 0;这样就不要设置height和line-height了</p>
+  <p>使用margin时尽量在后面的元素设置margin-left和margin-top，这样就不要重复设置了</p>
+  <p>在一个div内想让它的子元素同时偏移可以使用padding</p>
+  <div class="login">登录</div>
+</body>
+</html>
