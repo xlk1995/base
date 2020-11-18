@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>浮动</title>
+  <style>
+    .demo2 {
+      height: 300px;
+      width: 300px;
+      border: 1px solid red;
+      float: left;
+    }
+    .demo3 {
+      height: 300px;
+      width: 300px;
+      border: 1px solid red;
+      float: right;
+    }
+    .demo4 {
+      height: 300px;
+      width: 300px;
+      border: 1px solid red;
+    }
+    .demo1 {
+      border: 1px solid green;
+    }
+    .demo1::after{
+      content: "";
+      display: block;
+      clear: both;
+    }
+    .name::before {
+      content: '*';
+      color: red;
+      margin-right: 20px;
+    }
+  </style>
+</head>
+<body>
+  <p>清除浮动的几种方法</p>
+  <ul>
+    <li>父元素overflow:hidden</li>
+    <li>父元素高度写死，下面的元素 clear:both</li>
+    <li>父元素加伪类 after css 为 content: ''; display: block;clear: both; </li>
+    <li>直接在父元素中加个div 啥也不写，给个clear:both</li>
+  </ul>
+  <div class="name">姓名</div>
+  <div class="demo1">
+    <div class="demo2"></div>
+    <div class="demo3"></div>
+  </div>
+  111
+  <div class="demo4"></div>
+</body>
+</html>
