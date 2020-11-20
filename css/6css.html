@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>css定位</title>
+  <style>
+    .container{
+      background: red;
+      width: 120px;
+      text-align: center;
+      position: relative;
+    }
+    .container:hover .list{
+      height: 200px;
+    }
+    .list{
+      height: 0;
+      background: #ffffff;
+      overflow: hidden;
+      position: absolute;
+      width: 100%;
+      transition: 0.5s;
+    }
+  </style>
+</head>
+<body>
+  <p>css 定位有三种，一种是绝对定位，一种是相当定位，一种是固定定位。</p>
+  <p>绝对定位是相对于设置定位的祖先元素定位，没有找到就相对于body定位</p>
+  <p>相对定位是相对于自身进行定位</p>
+  <p>固定定位是相对于窗口进行定位</p>
+  <br>
+  <div class="container">
+    个人中心
+    <div class="list">
+      <div>我的订单</div>
+      <div>我的订单</div>
+      <div>我的订单</div>
+      <div>我的订单</div>
+      <div>我的订单</div>
+    </div>
+  </div>
+  <div style="margin-top: 100px;">啊啊啊啊啊</div>
+</body>
+</html>
