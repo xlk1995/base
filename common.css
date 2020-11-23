@@ -1,0 +1,39 @@
+.w1200{
+  width: 1200px;
+}
+.f-l{
+  float: left;
+}
+.f-r{
+  float: right;
+}
+.bg-r{
+  background: red;
+}
+.jjc{
+  justify-content: center;
+}
+.df{
+  display: flex;
+}
+.aic{
+  align-items: center;
+}
+.d-sb{
+  justify-content: space-between;
+}
+.block-c{
+  margin: 0 auto;
+}
+.text-c{
+  text-align: center;
+}
+*{
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+a{
+  text-decoration: none;
+  color: #000000;
+}
