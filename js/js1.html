@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>js基础</title>
+</head>
+
+<body>
+  11
+</body>
+<script>
+  // let res = prompt('请输入数字')
+  // console.log(res)
+  // let res1 = confirm('ddd')
+  // console.log(res1)
+
+  let month = parseInt(prompt('请输入月份'))
+  if (isNaN(month)) {
+    console.log('请输入数字')
+  } else {
+    switch (month) {
+      case 1: ;
+      case 3: ;
+      case 5: ;
+      case 7: ;
+      case 8: ;
+      case 10: ;
+      case 12:
+        console.log(`${month}月有31天`)
+        break
+        ;
+      case 2:
+        console.log(`${month}月有28天`)
+        break;
+      case 4: ;
+      case 6: ;
+      case 9: ;
+      case 11:
+        console.log(`${month}月有28天`)
+        break;
+      default:
+        console.log('请输入1~12之间的数')
+        break;
+        
+
+    }
+  }
+
+  let a = 10
+  let b = 0 
+  if (a > 10) {
+    b = 1
+  } else if(a>7 && a < 10){
+    b = 2
+  } else {
+    b = 3
+  }
+  console.log(b);
+  b = a > 10 ? 1 : (a>7 && a < 10) ? 2 : 3
+</script>
+
+</html>
