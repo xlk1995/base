@@ -1,0 +1,100 @@
+.menu{
+  background: #333;
+  height: 40px;
+}
+.menu .sep{
+  padding: 0 5px;
+}
+.search{
+  height: 80px;
+}
+.search .search-logo{
+  width: 300px;
+  height: 80px;
+}
+.search .search-input{
+  width: 600px
+}
+.search .input-wrapper{
+  width: 400px;
+  height: 40px;
+}
+
+.search .input-wrapper button{
+  /* height: 40px;  */
+  width: 80px;
+}
+.search .search-right{
+  width: 300px;
+}
+.main{
+  margin: 10px auto 0 auto ;
+  position: relative;
+  height: 455px;
+}
+.main .main-left{
+  position: absolute;
+  height: 100%;
+  opacity: 0.5;
+}
+.main .main-right{
+  position: absolute;
+  height: 100%;
+  opacity: 0.5;
+  right: 0;
+}
+.indexs{
+  width: 100px;
+  bottom: 10px;
+  left: calc( 50% - 50px);
+}
+.indexs li{
+  width: 15px;
+  height: 15px;
+  background: #000000;
+  border-radius: 50%;
+  border: 3px solid #cccccc;
+}
+
+.indexs li:hover,.indexs li.active{
+  background: #ffffff;
+}
+.demo{
+
+}
+.tab li{
+  padding: 10px 50px;
+}
+.tab li:hover, .tab li.active{
+  background: orange;
+}
+.content {
+  height: 200px;
+  width: 100%;
+}
+.content li{
+  display: none;
+}
+.content li.active{
+  display: block;
+}
+.arrow-left{
+  height: 100px;
+  font-size: 50px;
+  color: #cccccc;
+  left: 200px;
+  line-height: 100px;
+  top: calc(50% - 50px);
+  cursor: pointer;
+}
+.arrow-right{
+  height: 100px;
+  width: 100px;
+  font-size: 50px;
+  color: #cccccc;
+  right: 200px;
+  line-height: 100px;
+  top: calc(50% - 50px);
+  text-align: right;
+  cursor: pointer;  
+}

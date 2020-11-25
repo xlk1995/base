@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>简易商城</title>
+  <link rel="stylesheet" href="../common.css">
+  <link rel="stylesheet" href="./sc.css">
+</head>
+
+<body>
+  <div class="menu flex flex-j-c colorw font12">
+    <div class="w1200 flex flex-j-s">
+      <ul class="menu-left flex flex-a-c flex1">
+        <li>menu1</li>
+        <span class="sep">|</span>
+        <li>menu1</li>
+        <span class="sep">|</span>
+        <li>menu1</li>
+      </ul>
+      <ul class="menu-right flex flex-a-c">
+        <li>menu1</li>
+        <span class="sep">|</span>
+        <li>menu1</li>
+        <span class="sep">|</span>
+        <li>menu1</li>
+      </ul>
+    </div>
+  </div>
+  <div class="search w1200 block-c flex flex-a-c">
+    <div class="search-logo bgred">111</div>
+    <div class="search-input  flex flex-j-c flex-a-c">
+      <div class="input-wrapper flex flex-j-c">
+        <input type="text" class="flex1">
+        <button class="border0 colorw bgred">搜索</button>
+      </div>
+    </div>
+    <div class="search-right bgblue">333</div>
+  </div>
+  <div class="main bgred block-c flex w1200">
+    <div class="arrow-left  absolute ">
+      < </div>
+        <div class="arrow-right  absolute">
+          >
+        </div>
+        <ul class="main-left bgblue w200">
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+        </ul>
+        <ul class="main-right bgblue w200"></ul>
+        <img id="banner" src="1.jpg" alt="" class="w1200 block" style="height: 455px;">
+        <ul class="indexs flex absolute flex-j-s flex-a-c">
+          <li class="active"></li>
+          <li></li>
+          <li></li>
+        </ul>
+    </div>
+    <div class="demo  w1200 block-c">
+      <ul class="tab flex">
+        <li class="active">111</li>
+        <li>222</li>
+        <li>333</li>
+      </ul>
+      <ul class="content bgred ">
+        <li class="active">1111111111111</li>
+        <li>22222222222222</li>
+        <li>3333333333333</li>
+      </ul>
+    </div>
+
+</body>
+
+<script>
+  let banner = document.querySelector('#banner')
+  let index = 1
+  let indexs = document.querySelectorAll('.indexs li')
+  let tab = document.querySelectorAll('.tab li')
+  let content_item = document.querySelectorAll('.content li')
+  for (let i = 0; i < tab.length; i++) {
+    tab[i].addEventListener('click', () => {
+      document.querySelector('.tab li.active').classList.remove('active')
+      tab[i].classList.add('active')
+      document.querySelector('.content li.active').classList.remove('active')
+      content_item[i].classList.add('active')
+    })
+
+  }
+  let timer = 0
+  run()  
+  let arrow_left = document.querySelector('.arrow-left')
+  let arrow_right = document.querySelector('.arrow-right')
+  arrow_left.addEventListener('click', () => {
+    index -- 
+    if (index <= 0) index = 3
+    clearInterval(timer)
+    changeStyle()
+    run()
+  })
+  arrow_right.addEventListener('click', () => {
+    index ++ 
+    if (index > 3 ) index = 1
+    clearInterval(timer)
+    changeStyle()
+    run()
+  })
+  for (let i = 0; i < indexs.length; i++) {
+    const element = indexs[i]
+    element.addEventListener('click', () => {
+      clearInterval(timer)
+      index = i + 1
+      changeStyle()
+      run()
+    })
+    
+  }
+  banner.addEventListener('mouseenter', () => {
+    clearInterval(timer)
+  })
+  banner.addEventListener('mouseleave', () => {
+    run()
+  })
+
+  function run() {
+    timer = setInterval(() => {
+      index++
+      if (index === 4) index = 1
+     changeStyle()
+    }, 1500)
+  }
+  function changeStyle () {
+    banner.src = `${index}.jpg`
+    document.querySelector('.indexs li.active').classList.remove('active')
+    indexs[index - 1].classList.add('active')
+  }
+</script>
+
+</html>
