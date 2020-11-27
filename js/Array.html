@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>数组</title>
+</head>
+
+<body>
+  <script>
+    let array = [5,10,30]
+    // 数组的常用方法
+    // push pop
+    array.push(10,29,49)
+    array.pop()
+    // shift unshift
+    array.shift()
+    array.unshift(12,45)
+    // splice(index, length) 改变原数组
+    array.splice(2,3)
+    // slice(start, end) 不改变原数组 [) 包括start  不包括end
+    array.slice(0,2)
+    console.log(array.slice(0,2))
+    // indexOf includes lastIndexOf
+    array.push(12)
+    console.log(array.indexOf(1));
+    console.log(array.lastIndexOf(1));
+    console.log(array.includes(12));
+    // join concat
+    console.log(array.join('----'));
+    console.log(array.concat([1,2,3]));
+    // reverse
+    array.reverse()
+    // sort 首字符排序  不准
+    array.push(123,124)
+    array.sort()
+    console.log(array);
+    
+    
+  </script>
+</body>
+
+</html>
