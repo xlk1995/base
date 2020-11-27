@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>string</title>
+</head>
+
+<body>
+
+  <script>
+    let str = 'hello World'
+    // 字符串常用方法 
+    // toUpperCase  toLowerCase
+    console.log(str.toUpperCase())
+    console.log(str.toLowerCase())
+    // split
+    console.log(str.split('').reverse().join(''));
+    // substr 相当于数组的splice  subString相当于数组的 slice
+    console.log(str.substr(2, 2))
+    console.log(str.substring(2, 4))
+    console.log(str.substring(2));
+
+    // includes indexOf lastIndexOf
+    console.log(str.includes('ll0'))
+    console.log(str.indexOf('ll0'))
+    console.log(str.lastIndexOf('ll'))
+    // reapeat
+    console.log('-'.repeat(30));
+    // startsWith endsWith
+    console.log(str.startsWith('he'))
+    console.log(str.endsWith('he'))
+    // replace
+    console.log(str.replace('he', '**'))
+    console.log(str)
+
+    let url = `https://search.jd.com/Search?keyword=macbook%20pro&enc=utf-8&suggest=3.def.0.base&wq=mac&pvid=3aa5f968af5b454dba29af6a94f01f73`
+
+    let params = url.split('?')[1].split('&')
+    const keyword = 'keyword'
+    for (let i = 0; i < params.length; i++) {
+      let key = params[i].split('=')
+      if (key[0] === keyword) {
+        console.log(decodeURI(key[1]))
+      }
+    }
+
+    console.log('='.repeat(20));
+
+
+
+    setInterval(() => {
+      let now = Date.now()
+      let six = new Date('2020-11-27 18:00:00')
+      let sec = (six - now) / 1000
+
+      let h = Math.floor(sec / 3600)
+      let m = Math.floor(sec % 3600 / 60)
+      let s = Math.floor(sec % 3600 % 60)
+
+      h = (h < 10) ? '0' + h : h
+      m = (m < 10) ? '0' + m : m
+      s = (s < 10) ? '0' + s : s
+
+      let time = [h, m, s].join(':')
+
+      console.log(time);
+    }, 1000)
+
+
+
+
+  </script>
+</body>
+
+</html>
