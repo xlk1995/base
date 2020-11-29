@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>函数</title>
+</head>
+
+<body>
+  一般有两种写法，一种是function xxx(){} ,一种是 let xxx = function(){}，区别在于第一个会提升，第二个不会。
+  <script>
+    // 倒计时功能 发表帖子  1分钟以内显示刚刚/当前时间  一天以内显示 xx小时前 其他显示xx天前
+    function getPostTime(time) {
+      let now = new Date()
+      let postTime = time ? new Date(time) : now
+      let sec = Math.ceil((now - postTime) / 1000)
+      console.log(sec);
+
+      if (sec <= 60) {
+        console.log(postTime)
+      } else if (60 < sec && sec < 60 * 60) {
+
+        console.log(`${Math.floor(sec / 60)}分钟前`);
+      } else if (sec >= 60 * 60 && sec < 60 * 60 * 24) {
+        console.log(`${Math.floor(sec / 60 / 60)}小时前`);
+      } else {
+        console.log(`${Math.floor(sec / 60 / 60 / 24)}天前`);
+      }
+    }
+    function formatTime(time) {
+      let date = time ? new Date(time) : new Date()
+      let y = date.getFullYear()
+      let m = date.getMonth() + 1
+      let d = date.getDate()
+      let hh = requireZero(date.getHours())
+      let mm = requireZero(date.getMinutes())
+      let ss = requireZero(date.getSeconds())
+      return [y, m, d].join('-') + ' ' + [hh, mm, ss].join(':')
+    }
+    function requireZero(data) {
+      return data < 10 ? '0' + data : data
+    }
+    let time = formatTime()
+    console.log(time);
+
+    // getPostTime('2020-11-29 10:02:00')
+  </script>
+</body>
+
+</html>
