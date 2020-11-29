@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>自己实现数组的方法</title>
+</head>
+
+<body>
+  <script>
+    // -----join
+    function myJoin(arr, type = ",") {
+      let str = ''
+      for (let i = 0; i < arr.length; i++) {
+        str += arr[i]
+        if (i < arr.length - 1) str += type
+      }
+      return str
+    }
+
+    // -----slice
+    function mySlice(array, start, end) {
+      let arr = []
+      for (let i = 0; i < array.length; i++) {
+        if (i >= start && i < end) {
+          arr.push(array[i])
+        }
+      }
+      return arr
+    }
+
+    // -----push
+    function myPush(array, data) {
+      array[array.length] = data
+    }
+    let arr = [1, 2, 3, 4]
+    // myPush(arr,12)
+    // console.log(arr)
+
+    // -----pop
+    function myPop(arr) {
+
+      let res = arr[arr.length - 1]
+      arr.length -= 1
+      return res
+    }
+
+    // -----shift
+    function myShift(arr) {
+      // 把第一个删掉  返回它
+      let res = arr[0]
+      let len = arr.length
+      for (let i = 0; i < len; i++) {
+        arr[i] = arr[i + 1]
+      }
+      arr.length -= 1
+      return res
+    }
+    // ----unshift
+    function myUnshift(arr, value) {
+      let len = arr.length
+      for (let i = len; i > 0; i--) {
+        arr[i] = arr[i - 1]
+      }
+      arr[0] = value
+    }
+    // myUnshift(arr,12)
+    // console.log(arr);
+
+    // reverse
+    function myReverse(arr) {
+      // 两级反转
+      let len = arr.length
+      for (let i = 0; i < len / 2; i++) {
+        // debugger
+        // let time = Math.floor(len/2)
+        // if (i === time){
+        //   break
+        // }
+        let temp = ''
+        temp = arr[i]
+        arr[i] = arr[len - 1 - i]
+        arr[len - 1 - i] = temp
+      }
+    }
+    let arr1 = [1, 2, 3, 4, 5]
+    // myReverse(arr1)
+    // console.log(arr1);
+
+    // -----splice
+    function mySplice(arr, index, length) {
+      if (length < 0) throw '请输入合法参数'
+      let maxLen = arr.length - index
+      console.log(maxLen);
+      if (length) {
+        length = length > maxLen ? maxLen : length
+      } else{
+        length = maxLen
+      }
+
+      let res = []
+      for (let i = index; i < arr.length; i++) {
+        if ( i < index + length) {
+          res.push(arr[i])
+        }
+        arr[i] = arr[i+length]
+      }
+      arr.length -= length
+      return res
+    }
+
+    let res11 = mySplice(arr1, 1, 2)
+    console.log(arr1,res11);
+
+
+
+  </script>
+</body>
+
+</html>
