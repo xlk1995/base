@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>高阶函数</title>
+</head>
+<body>
+  所谓高阶函数，就是参数为函数，或者说返回值为函数的函数
+  匿名函数就是没有名字的函数 
+  <script>
+    // es6 中可以简化语法
+    // 箭头函数中如果参数只有一个，并且return只有一个语句，可以简写成如下形式
+    let aa = num => num * 40
+    let bb = aa(20)
+    console.log(bb);
+    
+    (function () {
+      console.log('你是sb吗')
+    })()
+    
+    let cc = function (num) {
+      console.log(num);
+    }
+    function bbb (cc) {
+      cc(999999999999)
+    }
+    bbb(cc)
+  </script>
+</body>
+</html>
