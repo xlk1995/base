@@ -38,6 +38,18 @@
     array.sort()
     console.log(array);
     
+    // ------ 几个高级的用法
+    // filter 过滤
+    let arr = [1,2,3,4]
+    console.log(arr.filter(item => item > 2)) // [3,4]
+    
+    // some 有符合就返回true  every全部符合才返回true 
+    let arr1 = ['张三丰', '张无忌', '周芷若']
+    console.log(arr1.some(item => item.startsWith('张')))
+    console.log(arr1.every(item => item.startsWith('张')))
+    
+    // find 找到第一个符合条件的元素
+    console.log(arr1.find(item => item.startsWith('张')));
     
   </script>
 </body>
