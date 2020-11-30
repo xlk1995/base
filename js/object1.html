@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>几个练习题</title>
+</head>
+<body>
+  <script>
+    //hello world , i like javascript  统计每个字母的次数，并找到出现最多的那个
+    // '' 和 ' ' 是不一样的  强制类型转换 ' '返回的是true
+    let str = 'hello world , i like javascript'
+    let count = {}
+    let maxCode = {
+      name: '',
+      count: 0
+    }
+    for (let i = 0; i < str.length; i++) {
+      if (str[i] !== ' '){
+        let key = str[i]
+        count[key] = count[key] !== undefined ? count[key] + 1 : 1
+        
+        if (count[key] > maxCode.count) {
+          maxCode.name = key
+          maxCode.count = count[key]
+        }
+      }
+    }
+    console.log(count);
+    console.log(`出现最多次数是${maxCode.name}，出现了${maxCode.count}次`);
+
+
+
+
+    // 将 a=1&b=2&c=3转换为对象 {a:1,b:2,c:3}    
+    // 自己写的傻逼写法
+
+    let demo1 = 'a=1&b=2&c=3'
+    let arr1 = demo1.split('&')
+    console.log(arr1);
+    let target = {}
+    for (let i = 0; i < arr1.length; i++) {
+      let keyAarry = arr1[i].split('=')
+      target[keyAarry[0]] = parseInt(keyAarry[1])
+    }
+    console.log(target);
+    
+
+    // 将 {a:1,b:2,c:3}转换为 a=1&b=2&c=3
+    
+    let target1 = {a:1,b:2,c:3}
+    let arrRes = []
+    for (const key in target1) {
+      let firstRes = [key,target1[key]].join('=') 
+      console.log(firstRes);
+      arrRes.push(firstRes)
+    }
+    console.log(arrRes.join('&'))
+    
+  </script>
+</body>
+</html>
