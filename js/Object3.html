@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>构造函数</title>
+</head>
+
+<body>
+  <script>
+    // 构造函数其实就是Java中的类，批量造对象就靠他 约定俗成我们使用大写来命名它
+    // 其中的this指向 它创造的对象
+    function Chess(name, color, x ,y) {
+      this.name = name
+      this.color = color
+      this.position = {x, y}
+      this.move = function () {
+        console.log(`${this.color}${this.name}的位置是（${x},${y}）`);
+      }
+    }
+
+    let a = new Chess('马','红', 10,10)
+    let b = new Chess('车','红', 10,10)
+    let c = new Chess('相','红', 10,10)
+    a.move()
+    b.move()
+    c.move()
+  </script>
+</body>
+
+</html>
