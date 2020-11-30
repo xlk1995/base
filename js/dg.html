@@ -11,14 +11,17 @@
     //写一个函数   输入n 计算 1+2+...+n 的
     function accumulate (n) {
 
-      debugger
+      // debugger
       if(n === 1) return 1
-      let res = n + accumulate(n - 1)
+      let res = n + arguments.callee(n - 1)
       return res
     }
     let res = accumulate(5)
     console.log(res)
     
+    // arguments 是函数接受的参数 它的主要用法是arguments.callee可以调用函数本身  这样可以解耦
+    function xx () {console.log(arguments);}
+    xx(1,1,2)
   </script>
 </body>
 </html>
