@@ -51,6 +51,25 @@
     // find 找到第一个符合条件的元素
     console.log(arr1.find(item => item.startsWith('张')));
     
+    // map 加工数组里的值 返回一个新数组
+    let arr_1 = [11,22,33]
+    let arr_res = arr.map(item => {
+      return item*2
+    })
+    console.log(arr_res);
+    
+
+    //reduce 一般用于求和
+    let goods = [
+      {name: '可乐', price:1, count: 2},
+      {name: '雪碧', price:2, count: 3},
+      {name: '芬达', price:3, count: 4},
+    ]
+    let total = goods.reduce((total, item) =>{
+      return total + item.price * item.count
+    },0)
+    console.log(total);
+    
   </script>
 </body>
 
