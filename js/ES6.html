@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ES6</title>
+</head>
+<body>
+  <script>
+    // 解构 对象解构  
+    let obj = {
+      name: 'xlk',
+      age: 25
+    }
+    // : 后面是别名
+    let {name:name1, age} = obj
+    console.log(name1,age);
+    
+    // 数组解构
+    // 数组解构是按顺序解构的 ，用,隔开， 如果不需要则空着即可
+    let arr = [1,2,3,4]
+    let [, b, c, d]  = arr
+    console.log(b,c,d);
+    
+    // 拓展运算符 ...，可以创建新的对象和数组，用在函数中一般用于接收参数，以数组的形式
+    let obj1 = {...obj}
+    console.log(obj1);
+    console.log(obj1 === obj)
+    
+    let arr1 = [...arr]
+    console.log(arr1);
+    console.log(arr1 === arr)
+    
+    function aaa (x,y,...args) {
+      console.log(x,y,args);
+    }
+    
+    aaa(1,2,3,4,5)
+    
+    
+  </script>
+</body>
+</html>
