@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>对象</title>
+</head>
+
+<body>
+
+  <script>
+    // 类是对象的抽象，对象是类的实例化
+    // 定义方法：字面量创建（常用），new Objcet()
+    // a.xxx 那么a就是一个对象
+    // this 指向调用者，若为指定调用者，则指向window
+    let ma = {
+      name: '马',
+      color: '红',
+      position: {
+        x: 0,
+        y: 0
+      },
+      move (x,y) {
+        console.log(`${this.color}${this.name}移动到了(${x},${y})`)
+        this.x = x
+        this.y = y
+      }
+    }
+    ma.move(10,20)
+    ma.move(20,40)
+    console.log(ma)
+    
+    // 获取对象中属性有两种方法，一是. 二是 []
+
+    let arr = {
+      0: 1,
+      1: 2,
+      2: 3,
+      length: 3
+    }
+    for (let i = 0; i < arr.length; i++) {
+      console.log(arr[i])
+    }
+
+  </script>
+
+</body>
+
+</html>
