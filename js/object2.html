@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>关于对象</title>
+</head>
+<body>
+  <script>
+    // Object.keys Object.values
+    let obj = {
+      a: 1,
+      b: 2,
+      c: 3
+    }
+    console.log(Object.keys(obj));
+    
+    // 第一次改进
+    // function stringfy (obj){
+    //   let strArr = Object.keys(obj)
+    //   let resArr = []
+    //   strArr.forEach(item => {
+    //     resArr.push([item, obj[item]].join('='))
+    //   })
+    //   return resArr.join('&')
+    // }
+
+    // 第二次改进
+    // function stringfy (obj){
+    //   let strArr = Object.keys(obj)
+    //   let newArr = strArr.map(item => {
+    //     return [item, obj[item]].join('=')
+    //   })
+    //   return newArr.join('&')
+    // }
+
+    // 第三次改进
+    let stringfy = obj => Object.keys(obj).map(item => [item, obj[item]].join('=')).join('&')
+    let res = stringfy({name: 'xlk22',age:25})
+    console.log(res);
+    
+
+    // 想把每一项乘以2 返回
+    let arr = [11,22,33]
+    // 初始想法
+    
+    // let arr1 = []
+    // arr.forEach(item =>{
+    //   arr1.push(item*2)
+    // })
+    // console.log(arr1);
+    function forEach (callback) {
+      let newArr = []      
+      for (let i = 0; i < arr.length; i++) {
+        let res = callback(arr[i])
+        newArr.push(res)
+      }
+      return newArr
+    }
+    let res11 = forEach(item =>{
+      return {name: item}
+    })
+    console.log(res11);
+    
+  </script>
+</body>
+</html>
