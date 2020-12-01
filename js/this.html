@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>this和作用域</title>
+</head>
+<body>
+  <script>
+    // 如果一个变量在自己作用域中没有找到，他会一层层向外找，到window也找不到的话就会报错 xxx is not defined
+    // var 一个变量它就存在window中
+    var xxx = 'aaa'
+    console.log(window.xxx);
+    console.log(window);
+    // 函数中的作用域是互不影响的
+    function demo1 () {
+      var a = 1
+    }
+    function demo2 () {
+      console.log(a);
+      
+    } 
+    // demo1()
+    // demo2()
+    // console.log(a);
+    
+    // this指向调用者，没有调用者就指向window，和自用变量的不同是，自由变量我们在定义时找他，this在调用时找他
+
+    let nickname = 'aaa'
+    let obj = {
+      nickname: 'bbb',
+      say () {
+        let nickname = 'ccc'
+        return function (nickname) {
+          console.log(`1${nickname}`) // 'ccc'
+          console.log(`2我是${this.nickname}`); // undefined
+        }
+      }
+    }
+    obj.say()()
+    console.log(`3${nickname}`) // aaa
+
+    
+    
+  </script>
+</body>
+</html>
