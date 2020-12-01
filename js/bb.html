@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>闭包</title>
+</head>
+<body>
+  <script>
+
+    var num = 10 
+    var obj = {num: 20}
+    obj.fn = (function (num) {
+      this.num  = num * 3
+      num ++ 
+      return function (n) {
+        this.num += n
+        num ++ 
+        console.log(num)
+      }
+    } )(obj.num)
+    var fn = obj.fn
+    fn(5)
+    obj.fn(10)
+    console.log(`num:${num}, obj.name:${obj.num}`);
+    
+
+
+    // 笔试题1
+    console.log(a) // undefined
+    var a = 12
+    function demo1 () {
+      console.log(a) // undefined
+      var a = 13
+    } 
+    demo1()
+    console.log(a) // 12
+
+    // 笔试题2
+    // console.log(aa)
+    let aa = 12
+    function demo2 () {
+      // console.log(aa)
+      let aa = 13
+    }
+    demo2()
+    console.log(aa)
+    
+    // 笔试题三
+    // console.log(aaa)
+    aaa = 12
+    function demo3 () {
+      // console.log(aaa)
+      let aaa = 13
+    }
+    demo3()
+    console.log(aaa)
+    
+    // 笔试题四 只有function能困住var if不行
+    var foo = 1
+    function demo4 () {
+      if (!foo) {
+        var foo = 10
+      }
+      console.log(foo);
+    }
+    demo4()
+    
+    // 笔试题五
+    var aaaaa = 0
+    function demo5 () {
+      var aaaaa = 10
+      function demo51 () {
+        aaaaa ++
+        console.log(aaaaa);
+      }
+      demo51()
+      return demo51
+    }
+    let demo52 = demo5()
+    demo52()
+    console.log(aaaaa);
+    
+
+    // 笔试题六
+    var a6 = 9
+    function demo6 () {
+      a6 = 0 
+      return function (b) {
+        return b + a6++
+      }
+    }
+    var demo61 = demo6()
+    console.log(demo61(5));
+    console.log(demo6()(5));
+    console.log(demo61(5));
+    console.log(a6)
+    
+    // 笔试题7
+    var arr = [1,2,3,4]
+    function dmeo7(arr) {
+      arr[0] = 0
+      arr = [0]
+      arr[0] = 100
+      return arr
+    }
+    var res = dmeo7(arr)
+    console.log(arr)
+    console.log(res)
+    
+    
+  </script>
+</body>
+</html>
