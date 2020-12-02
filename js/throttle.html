@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>节流</title>
+</head>
+
+<body>
+  <script>
+
+    function throttle(wait, callback) {
+      let endDate = new Date()
+      return function () {
+        // debugger
+        console.log(arguments);
+        
+        if (new Date() - endDate < wait) return console.log('太忙了');
+        
+        callback.apply(this, arguments)
+        endDate = new Date()
+      }
+    }
+    let say = function () {
+      // debugger 
+      console.log('1111');
+      
+    }
+    // let fn = throttle(5000,say)
+    // setInterval(() => {
+    //   fn()
+    // }, 1000)
+
+    let obj = {
+      nickname: 'xxx',
+      // pay () {
+      //   console.log(`${this.nickname} 付了 10块钱`);
+      // }
+      pay: throttle(5000,function (a){
+        console.log(`${this.nickname} 付了 ${a}块钱`);
+      })
+    }
+    // let fn1 = throttle(5000, obj.pay)
+    // obj.pay = throttle(5000, obj.pay)
+    setInterval(()=>{
+      obj.pay(29)
+    },1000)
+  </script>
+</body>
+
+</html>
