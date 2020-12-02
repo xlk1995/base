@@ -27,6 +27,38 @@
       cc(999999999999)
     }
     bbb(cc)
+
+
+    // 箭头函数中没有this和arguments 它的this指向外层函数的this
+
+    console.log(this)
+    let obj = {
+      say: ()=>{
+        console.log(this);
+        return () =>{
+          console.log(this);
+        }
+      },
+      sayHi () {
+        console.log(this);
+        return () =>{
+          console.log(this);
+        }
+      },
+      sayHello: function () {
+        console.log(this);
+        
+      }
+    }
+    
+    obj.say()
+    obj.say()()
+    obj.sayHi()()
+    obj.sayHello()
+    
+    let sayA = obj.sayHello
+    sayA()
+    
   </script>
 </body>
 </html>
