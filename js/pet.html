@@ -10,28 +10,20 @@
 
 <body>
   <script>
+
     let game = {
       // 当前用户
       nowUser: null,
       // 用于存放用户信息
-      user: [{
-        userName: 'aa',
-        passWord: '123456'
-      }],
+      user: [new User('aa', '123456')],
       sensitiveWords: ['cnm', 'qnm', 'nmsl'],
       petList: [
-        {
-          name: '小猪猪',
-          type: '1', // 1.猪 2.狗
-          gender: '1', // 1.GG 2.MM
-          state: 80,
-          master: 'aa'
-        }
+        new Pet('小猪猪','1','1','aa')
       ],
       // 查看宠物
-      showPetPage () {
+      showPetPage() {
         // 判断有无宠物，没有的话就跳到主页
-        let myPet = this.petList.find(item =>{
+        let myPet = this.petList.find(item => {
           return item.master === this.nowUser
         })
         console.log(myPet);
@@ -40,30 +32,22 @@
           return this.showMainPage()
         }
 
-        console.log(`
-          我是${myPet.name}
-          我的类型是${'1' ? '猪' : '狗'}
-          我的性别是${'1' ? 'GG' : 'MM'}
-          我的主人是${this.nowUser}
-          我的状态${myPet.state}
-        `);
-        
+       myPet.introduceSelf()
+
         let play
         play = prompt('请选择操作：1. 喂食 2. 玩耍 3.退出')
         switch (play) {
           case '1':
-            myPet.state += 10
-            console.log('喂食成功，状态加10');
+            myPet.eat()
             // this.showPetPage()
             break;
           case '2':
-            myPet.state += 5
-            console.log('一起，状态加5');
+            myPet.play()
             // this.showPetPage()            
             break;
           case '3':
             return this.showMainPage()
-            // break
+          // break
           default:
             console.log('操作有误，请重新操作');
             // this.showPetPage()
@@ -71,47 +55,47 @@
         }
         arguments.callee.call(this)
         // this.showPetPage()
-        
+
       },
       // 领养宠物
-      getPetPage () {
+      getPetPage() {
         // 首先判断有没有宠物，有了就不能重复领养
         // 这里不能用function，使用function，this就指向了window
         let hasPet = this.petList.some(item => {
           return item.master === this.nowUser
         })
-        if(hasPet) {
+        if (hasPet) {
           console.log('已有宠物不能重复领养！')
           return this.showMainPage()
         }
-        
+
         let userName, type, gender
         let userNameIsOk, typeIsOk, genderIsOk
 
         do {
           type = prompt('请输入宠物类型，1.猪 2.狗')
-          if (['1','2'].includes(type)){
+          if (['1', '2'].includes(type)) {
             typeIsOk = true
-          }else {
+          } else {
             typeIsOk = false
             console.log('请输入合法类型')
-            
+
           }
         } while (!typeIsOk)
 
         do {
           gender = prompt('请输入宠物性别，1.GG 2.MM')
-          if (['1','2'].includes(gender)){
+          if (['1', '2'].includes(gender)) {
             genderIsOk = true
-          }else {
+          } else {
             genderIsOk = false
             console.log('请输入合法类型')
-            
+
           }
         } while (!genderIsOk)
 
 
-        
+
         do {
           userName = prompt('请输入宠物名')
           userName = myTrim(userName)
@@ -128,23 +112,18 @@
             userNameIsOk = true
           }
         } while (!userNameIsOk);
-        
-        console.log(userName,type,gender);
-        this.petList.push({
-          name:userName,
-          type,
-          gender,
-          state: 50,
-          master: this.nowUser
-        })
+
+        console.log(userName, type, gender);
+        let newPet = new Pet(userName,type,gender,this.nowUser)
+        this.petList.push(newPet)
         // console.log(this.petList);
         this.showMainPage()
-        
+
       },
       // 主页面      
-      showMainPage () {
+      showMainPage() {
         console.log(this.nowUser);
-        
+
         let type = prompt('欢迎来到宠物世界，请选择你所要的操作，1.查看宠物 2.领养宠物，3.退出')
         switch (type) {
           case '1':
@@ -197,21 +176,21 @@
           return item.userName === userName
         })
         console.log(currentUser);
-        
+
         if (!currentUser) {
           console.log('用户不存在');
           // this.showLoginPage()
-          arguments.callee.call(this)          
+          arguments.callee.call(this)
         } else if (currentUser.passWord !== passWord) {
           console.log('密码错误！');
           // this.showLoginPage()
-          arguments.callee.call(this)          
+          arguments.callee.call(this)
         }
         console.log('login success!');
         this.nowUser = userName
         console.log(this.nowUser);
         this.showMainPage()
-        
+
       },
 
       // 注册页
@@ -277,10 +256,9 @@
         } while (!passWordConfirmIsOk);
 
         // 存入数组中
-        this.user.push({
-          userName,
-          passWord
-        })
+        this.user.push(new User(userName, passWord))
+        console.log(this.user);
+
 
         this.showWelcomePage()
 
@@ -320,7 +298,39 @@
       if (!str) return ''
       return str.trim()
     }
-
+    function User(userName, passWord) {
+      this.userName = userName
+      this.passWord = passWord
+    }
+    function Pet(name,type,gender,master) {
+      this.name = '小猪猪'
+      this.type = '1'
+      this.gender = '1' 
+      this.state = 80
+      this.master = 'aa'
+      this.introduceSelf = function () {
+        console.log(`
+          我是${this.name}
+          我的类型是${this.type === '1' ? '猪' : '狗'}
+          我的性别是${this.gender === '1' ? 'GG' : 'MM'}
+          我的主人是${this.master}
+          我的状态${this.state}
+        `);
+      }
+      let endTime = new Date()
+      
+      this.eat =  function () {
+        if (new Date() - endTime < 5000) return console.log('吃饱了！！！！！');
+        
+        this.state = this.state < 100 ?  this.state + 10 : 100
+        console.log('喂食成功，状态加10');
+        endTime = new Date()
+      }
+      this.play = function  () {
+        this.state = this.state < 100 ?  this.state + 5 : 100
+        console.log('一起玩耍，状态加5');
+      }
+    }
   </script>
 
 
