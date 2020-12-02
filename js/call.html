@@ -28,9 +28,25 @@
     }
     obj.say.call(aa, 'sima')
     obj.say.apply(bb,['sb'])
-    obj.say.bind(cc)('66')
+    obj.say.bind(cc,'666')()
     
-
+    // 实现一个类数组 如果我们想使用数组的方法，可以借用call
+    let  fake_arr = {
+      0: 'a',
+      1: 'b',
+      2: 'c',
+      length: 3,
+      join (str) {
+        return Array.prototype.join.call(fake_arr,str)
+      }
+    }
+    for (let i = 0; i < fake_arr.length; i++) {
+      console.log(fake_arr[i])
+    }
+    
+    console.log(fake_arr.join('-'));
+    
+    
   </script>
 </body>
 </html>
