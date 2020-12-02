@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>宠物商店</title>
+</head>
+
+<body>
+  <script>
+    let game = {
+      // 当前用户
+      nowUser: null,
+      // 用于存放用户信息
+      user: [{
+        userName: 'aa',
+        passWord: '123456'
+      }],
+      sensitiveWords: ['cnm', 'qnm', 'nmsl'],
+      petList: [
+        {
+          name: '小猪猪',
+          type: '1', // 1.猪 2.狗
+          gender: '1', // 1.GG 2.MM
+          state: 80,
+          master: 'aa'
+        }
+      ],
+      // 查看宠物
+      showPetPage () {
+        // 判断有无宠物，没有的话就跳到主页
+        let myPet = this.petList.find(item =>{
+          return item.master === this.nowUser
+        })
+        console.log(myPet);
+        if (!myPet) {
+          console.log('你还没有宠物，请先领养宠物！');
+          return this.showMainPage()
+        }
+
+        console.log(`
+          我是${myPet.name}
+          我的类型是${'1' ? '猪' : '狗'}
+          我的性别是${'1' ? 'GG' : 'MM'}
+          我的主人是${this.nowUser}
+          我的状态${myPet.state}
+        `);
+        
+        let play
+        play = prompt('请选择操作：1. 喂食 2. 玩耍 3.退出')
+        switch (play) {
+          case '1':
+            myPet.state += 10
+            console.log('喂食成功，状态加10');
+            // this.showPetPage()
+            break;
+          case '2':
+            myPet.state += 5
+            console.log('一起，状态加5');
+            // this.showPetPage()            
+            break;
+          case '3':
+            return this.showMainPage()
+            // break
+          default:
+            console.log('操作有误，请重新操作');
+            // this.showPetPage()
+            break;
+        }
+        this.showPetPage()
+        
+      },
+      // 领养宠物
+      getPetPage () {
+        // 首先判断有没有宠物，有了就不能重复领养
+        // 这里不能用function，使用function，this就指向了window
+        let hasPet = this.petList.some(item => {
+          return item.master === this.nowUser
+        })
+        if(hasPet) {
+          console.log('已有宠物不能重复领养！')
+          return this.showMainPage()
+        }
+        
+        let userName, type, gender
+        let userNameIsOk, typeIsOk, genderIsOk
+
+        do {
+          type = prompt('请输入宠物类型，1.猪 2.狗')
+          if (['1','2'].includes(type)){
+            typeIsOk = true
+          }else {
+            typeIsOk = false
+            console.log('请输入合法类型')
+            
+          }
+        } while (!typeIsOk)
+
+        do {
+          gender = prompt('请输入宠物性别，1.GG 2.MM')
+          if (['1','2'].includes(gender)){
+            genderIsOk = true
+          }else {
+            genderIsOk = false
+            console.log('请输入合法类型')
+            
+          }
+        } while (!genderIsOk)
+
+
+        
+        do {
+          userName = prompt('请输入宠物名')
+          userName = myTrim(userName)
+          if (!userName) {
+            userNameIsOk = false
+            console.log('宠物名不能为空')
+          } else if (this.sensitiveWords.some(item => {
+            return userName.toUpperCase().includes(item.toUpperCase())
+          })) {
+            userNameIsOk = false
+            console.log('宠物名不能包含敏感词')
+          }
+          else {
+            userNameIsOk = true
+          }
+        } while (!userNameIsOk);
+        
+        console.log(userName,type,gender);
+        this.petList.push({
+          name:userName,
+          type,
+          gender,
+          state: 50,
+          master: this.nowUser
+        })
+        // console.log(this.petList);
+        this.showMainPage()
+        
+      },
+      // 主页面      
+      showMainPage () {
+        console.log(this.nowUser);
+        
+        let type = prompt('欢迎来到宠物世界，请选择你所要的操作，1.查看宠物 2.领养宠物，3.退出')
+        switch (type) {
+          case '1':
+            this.showPetPage()
+            break;
+          case '2':
+            this.getPetPage()
+            break;
+          case '3':
+            this.nowUser = null
+            this.showWelcomePage()
+            break;
+
+          default:
+            console.log('输入有误，请重新输入');
+            // console.log(this);
+
+            this.showMainPage()
+            // arguments.callee()
+            break;
+        }
+      },
+      // 登录页
+      showLoginPage() {
+        let userName, passWord
+        let userNameIsOk, passWordIsOk
+        do {
+          userName = prompt('请输入用户名')
+          if (!userName) {
+            userNameIsOk = false
+            console.log('用户名不能为空')
+          }
+          else {
+            userNameIsOk = true
+          }
+        } while (!userNameIsOk);
+
+        do {
+          passWord = prompt('请输入密码')
+          if (!passWord) {
+            passWordIsOk = false
+            console.log('密码不能为空')
+          }
+          else {
+            passWordIsOk = true
+          }
+        } while (!passWordIsOk);
+
+        let currentUser = this.user.find(item => {
+          return item.userName === userName
+        })
+        console.log(currentUser);
+        
+        if (!currentUser) {
+          console.log('用户不存在');
+          this.showLoginPage()
+        } else if (currentUser.passWord !== passWord) {
+          console.log('密码错误！');
+          this.showLoginPage()
+        }
+        console.log('login success!');
+        this.nowUser = userName
+        console.log(this.nowUser);
+        this.showMainPage()
+        
+      },
+
+      // 注册页
+      // 1.进入注册页，显示欢迎注册，弹出提示框
+      // 2.填写用户名，密码，确认密码
+      // 3.用户名不能为空，不能取消，不能重复，不能包含敏感词
+      // 4.密码不能为空，必须大于6位
+      // 5.确认密码两次一样即可，
+      showRegistPage() {
+        console.log('欢迎注册')
+        let userName, passWord, passWordConfirm
+        let userNameIsOk, passWordIsOk, passWordConfirmIsOk
+        do {
+          userName = prompt('请输入用户名')
+          userName = myTrim(userName)
+          if (!userName) {
+            userNameIsOk = false
+            console.log('用户名不能为空')
+          } else if (this.sensitiveWords.some(item => {
+            return userName.toUpperCase().includes(item.toUpperCase())
+          })) {
+            userNameIsOk = false
+            console.log('用户名不能包含敏感词')
+          } else if (this.user.some(item => {
+            return item.userName === userName
+          })) {
+            userNameIsOk = false
+            console.log('用户名不能重复')
+          }
+          else {
+            userNameIsOk = true
+          }
+        } while (!userNameIsOk);
+
+        do {
+          passWord = prompt('请输入密码')
+          passWord = myTrim(passWord)
+          console.log(passWord);
+          if (!passWord) {
+            passWordIsOk = false
+            console.log('密码不能为空')
+          } else if (passWord.length < 6) {
+            passWordIsOk = false
+            console.log('密码必须大于等于六位')
+          }
+          else {
+            passWordIsOk = true
+          }
+        } while (!passWordIsOk);
+
+
+        do {
+          passWordConfirm = prompt('请确认密码')
+
+          console.log(passWordConfirm);
+          if (passWordConfirm !== passWord) {
+            passWordConfirmIsOk = false
+            console.log('两次必须输入一致')
+          }
+          else {
+            passWordConfirmIsOk = true
+          }
+        } while (!passWordConfirmIsOk);
+
+        // 存入数组中
+        this.user.push({
+          userName,
+          passWord
+        })
+
+        this.showWelcomePage()
+
+
+      },
+      // 欢迎页
+      showWelcomePage() {
+        let type = prompt('欢迎来到宠物世界，请选择你所要的操作，1.登录，2.注册，3退出')
+        switch (type) {
+          case '1':
+            this.showLoginPage()
+            break;
+          case '2':
+            this.showRegistPage()
+            break;
+          case '3':
+            console.log('退出');
+            break;
+
+          default:
+            // console.log('输入有误，请重新输入');
+            console.log(this);
+
+            this.showWelcomePage()
+            // arguments.callee()
+            break;
+        }
+      },
+
+
+
+    }
+    game.showWelcomePage()
+
+    //去除空格 '' null undefined
+    function myTrim(str) {
+      if (!str) return ''
+      return str.trim()
+    }
+
+  </script>
+
+
+</body>
+
+</html>
