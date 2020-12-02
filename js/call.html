@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>call apply bind</title>
+</head>
+<body>
+  <script>
+    // call aplly bind 都用来改变this的指向 
+    let aa = {age:20}  
+    let bb = {age:30}  
+    let cc = {age:40}  
+    function fn () {
+      console.log('111111')
+    }
+    fn()
+    fn.call()
+    fn.apply()
+    fn.bind()()
+    
+    let obj = {
+      age: 1,
+      say (name) {
+        console.log(`我是${name}我${this.age}岁了`);
+      }
+    }
+    obj.say.call(aa, 'sima')
+    obj.say.apply(bb,['sb'])
+    obj.say.bind(cc)('66')
+    
+
+  </script>
+</body>
+</html>
