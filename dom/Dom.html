@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>DOM</title>
+</head>
+<body>
+  <div id='app'><h1>111</h1></div>
+  <div>
+    <img id="banner" src="http://p1.music.126.net/Y9JuojOiDoeoO2t6wZZDPQ==/109951165514400707.jpg?imageView&quality=89" alt="">
+  </div>
+  <script>
+    // DOM 是文档对象模型
+    // 所有的DOM节点都可以通过 js获取
+    // document.body.style.backgroundColor = 'red'
+
+    // 获取DOM节点的方法常用的有以下几种
+    let app = document.getElementById('app')
+    let app1 = document.querySelector('#app')
+    let app2 = document.querySelectorAll('#app')[0]
+    
+    // 我们可以对dom节点进行操作
+    // 对行内样式进行操作 使用style 使用的是驼峰式
+    app.style.color = 'red'
+    // 添加 删除 类
+    app.classList.add('active')
+    app.classList.remove('active')
+    
+    // 获取dom节点内的内容 innerHTML获取html内容  innerText只获取文本
+    console.log(app.innerHTML);
+    console.log(app.innerText);
+    
+    // 获取，修改dom元素的属性
+    let imgList = [
+      'http://p1.music.126.net/Y9JuojOiDoeoO2t6wZZDPQ==/109951165514400707.jpg?imageView&quality=89',
+      'http://p1.music.126.net/Ce_fnh_vsqztDJYq0wLjjg==/109951165514236180.jpg?imageView&quality=89',
+      'http://p1.music.126.net/Cj7EKRmeT0IfguP1YTcZ-Q==/109951165514228724.jpg?imageView&quality=89',
+      'http://p1.music.126.net/130LNz7Pc9UfA3VVYY6fxw==/109951165514415926.jpg?imageView&quality=89'
+    ]
+    
+    let banner = document.querySelector('#banner')
+    let i = 0
+    setInterval(()=>{
+      i++
+      if (i === imgList.length-1) i = 0
+      banner.src = imgList[i]
+    },1000)
+    
+    // 添加获取属性
+    app.setAttribute('age',10)
+    console.log(app.getAttribute('age '));
+    
+
+    // dom节点的增删
+    let div = document.createElement('div')
+    div.innerHTML = '晚上好'
+    div.id = 'myDiv'
+    document.body.appendChild(div)
+    
+    // 父元素删除
+    // document.body.removeChild(div)
+    // 自己删自己
+    div.remove()
+
+
+
+  </script>
+</body>
+</html>
